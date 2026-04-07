@@ -1,7 +1,8 @@
 from flask import Flask, render_template
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="templates", static_folder="static")
+
 
 # ============================================
 # CASE STUDIES DATA
@@ -147,4 +148,5 @@ def dither():
 
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    app = Flask(__name__, template_folder="templates", static_folder="static")
+    app.run(host="0.0.0.0", port=port)
+
