@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Studies — Designer & Creative Coder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .case-studies-header {
+            border-top: 1px solid var(--black);
+            padding: 60px 24px;
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+        }
+
+        .case-studies-title {
+            font-family: var(--display);
+            font-size: clamp(60px, 12vw, 140px);
+            line-height: 0.85;
+            color: var(--black);
+        }
+
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            border-top: 1px solid var(--black);
+        }
+
+        .case-study-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            border-bottom: 1px solid var(--black);
+            min-height: 400px;
+        }
+
+        .case-study-item:nth-child(even) {
+            direction: rtl;
+        }
+
+        .case-study-item:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .case-study-image {
+            background: #f0f0f0;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .case-study-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .case-study-item:hover .case-study-image img {
+            transform: scale(1.05);
+        }
+
+        .case-study-content {
+            padding: 40px 48px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            background: #fafafa;
+        }
+
+        .case-study-label {
+            font-size: 9px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .case-study-title {
+            font-family: var(--display);
+            font-size: clamp(24px, 4vw, 42px);
+            line-height: 1.1;
+            margin-bottom: 16px;
+            color: var(--black);
+        }
+
+        .case-study-meta {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 24px;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .case-study-meta span {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .case-study-meta strong {
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .case-study-description {
+            font-size: 12px;
+            line-height: 1.8;
+            color: #333;
+            margin-bottom: 24px;
+            max-width: 450px;
+        }
+
+        .case-study-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--black);
+            color: var(--white);
+            text-decoration: none;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            border: 1px solid var(--black);
+            transition: all 0.2s;
+            width: fit-content;
+        }
+
+        .case-study-link:hover {
+            background: transparent;
+            color: var(--black);
+        }
+
+        .back-link {
+            position: fixed;
+            top: 16px;
+            left: 24px;
+            z-index: 99;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--black);
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            border-bottom-color: var(--accent);
+            color: var(--accent);
+        }
+
+        @media (max-width: 1024px) {
+            .case-study-item {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .case-study-item:nth-child(even) {
+                direction: ltr;
+            }
+
+            .case-study-image {
+                min-height: 300px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .case-studies-header {
+                padding: 40px 24px;
+                min-height: 200px;
+            }
+
+            .case-study-content {
+                padding: 30px 24px;
+            }
+
+            .case-study-meta {
+                gap: 16px;
+            }
+
+            .back-link {
+                top: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <a href="/" class="back-link">← Back</a>
+
+    <nav>
+        <a href="/" class="nav-logo">Me ▌ <span> To Me</span></a>
+        <ul class="nav-links">
+            <li><a href="/#projects">Projects</a></li>
+            <li><a href="/theory">Theory</a></li>
+            <li><a href="/case-studies">CaseStudies</a></li>
+            <li><a href="/dither">dither</a></li>
+        </ul>
+    </nav>
+
+    <section class="case-studies-header">
+        <h1 class="case-studies-title">Case<br>Studies</h1>
+    </section>
+
+    <section class="case-studies-grid">
+        {% for case in case_studies %}
+        <article class="case-study-item">
+            <div class="case-study-image">
+                {% if case.image %}
+                    <img src="{{ case.image }}" alt="{{ case.title }}" loading="lazy">
+                {% else %}
+                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; background: linear-gradient(135deg, #f0f0f0 0%, #e0e0e0 100%); font-size: 14px; color: #999;">
+                        No Image
+                    </div>
+                {% endif %}
+            </div>
+            <div class="case-study-content">
+                <span class="case-study-label">{{ case.year }}</span>
+                <h2 class="case-study-title">{{ case.title }}</h2>
+                <div class="case-study-meta">
+                    <span><strong>Category</strong>{{ case.category }}</span>
+                    <span><strong>Role</strong>{{ case.role }}</span>
+                </div>
+                <p class="case-study-description">{{ case.description }}</p>
+                <a href="{{ case.link }}" target="_blank" rel="noopener noreferrer" class="case-study-link">
+                    View Project →
+                </a>
+            </div>
+        </article>
+        {% endfor %}
+    </section>
+
+    <script>
+        // Custom cursor
+        const cursor = document.getElementById('cursor');
+        const ring = document.getElementById('cursorRing');
+        let mx = 0, my = 0, rx = 0, ry = 0;
+
+        document.addEventListener('mousemove', e => {
+            mx = e.clientX;
+            my = e.clientY;
+            cursor.style.transform = `translate(${mx - 6}px, ${my - 6}px)`;
+        });
+
+        function animateRing() {
+            rx += (mx - rx) * 0.12;
+            ry += (my - ry) * 0.12;
+            ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
+            requestAnimationFrame(animateRing);
+        }
+        animateRing();
+    </script>
+</body>
+</html>

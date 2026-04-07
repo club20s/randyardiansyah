@@ -1,0 +1,200 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atkinson Dither - 25Explorer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/dither.css">
+</head>
+
+<body>
+  <!-- NAVBAR -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <nav>
+      <a href="/" class="nav-logo">rd ▌ <span> 1955</span></a>
+      <ul class="nav-links">
+          <li><a href="/">Projects</a></li>
+          <li><a href="/theory">Theory</a></li>
+          <li><a href="/case-studies">CaseStudies</a></li>
+          <li><a href="/dither">dither</a></li>
+      </ul>
+  </nav>
+
+  <div class="container">
+    <header class="header dither-header">
+      <h1>Algorithmic Reduction</h1>
+      <p>
+        This project investigates classic image dithering algorithms as computational aesthetics.
+        Through the implementation of error diffusion, ordered thresholding, and stochastic noise techniques, 
+        the system demonstrates how early digital imaging constraints can be recontextualized as contemporary visual expression.
+      </p>
+    </header>
+
+    <div class="tool-container">
+      <div class="tool-grid">
+        <div class="canvas-container">
+          <div id="uploadPlaceholder" class="upload-placeholder">
+            <button class="btn" onclick="document.getElementById('fileInput').click()">
+              Choose Image...
+            </button>
+          </div>
+          <canvas id="canvas"></canvas>
+          <input type="file" id="fileInput" accept="image/*">
+        </div>
+
+        <div class="controls">
+          <div class="style-group">
+            <label>Dither Style</label>
+            <div class="style-buttons">
+              <button class="style-btn active" data-style="atkinson">Atkinson</button>
+              <button class="style-btn" data-style="floyd">Floyd-Steinberg</button>
+              <button class="style-btn" data-style="ordered">Ordered (Bayer)</button>
+              <button class="style-btn" data-style="random">Random</button>
+              <button class="style-btn" data-style="grid">Grid Art</button>
+            </div>
+          </div>
+
+          <div id="gridControls" class="hidden" style="margin-bottom: 1.5rem; padding: 12px; background: rgba(127,127,127,0.1); border-radius: 8px; border: 1px solid rgba(127,127,127,0.2);">
+            <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 12px;">
+              <label style="margin:0; font-weight:600; font-size:0.9rem;">Grid Color:</label>
+              <input type="color" id="gridColor" value="#0055ff" style="border:none; width:30px; height:30px; cursor:pointer; background:none;">
+            </div>
+            
+            <div class="slider-group" style="margin-bottom:0;">
+              <label style="font-size:0.9rem;">Block Size</label>
+              <div class="slider-container">
+                <input type="range" id="blockSizeSlider" min="4" max="50" value="12">
+                <div class="slider-value" id="blockSizeValue">12</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="bit-group">
+            <label>Bit Depth</label>
+            <select id="bitDepth">
+              <option value="1">1-bit (Black / White)</option>
+              <option value="2">2-bit (4 Levels)</option>
+              <option value="4">4-bit (16 Levels)</option>
+            </select>
+          </div>
+
+          <div class="slider-group">
+            <label>Threshold</label>
+            <div class="slider-container">
+              <input type="range" id="thresholdSlider" min="0" max="255" value="128">
+              <div class="slider-value" id="thresholdValue">128</div>
+            </div>
+            <div class="slider-labels">
+              <span>0</span>
+              <span>128</span>
+              <span>255</span>
+            </div>
+          </div>
+          
+<!-- button grup -->
+          <div class="button-group">
+            <button class="btn" onclick="document.getElementById('fileInput').click()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="17 8 12 3 7 8"></polyline>
+                <line x1="12" y1="3" x2="12" y2="15"></line>
+              </svg>
+              Choose Image
+            </button>
+              <!-- BUTTON BARU INI -->
+  <button class="btn" id="downloadImgBtn" disabled>
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+      <polyline points="7 10 12 15 17 10"></polyline>
+      <line x1="12" y1="15" x2="12" y2="3"></line>
+    </svg>
+    Download Image
+  </button>
+            <button class="btn" id="saveBtn" disabled>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+              Save With Desc
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <section class="info-section">
+      <div class="info-grid">
+        <div class="info-header">
+          <h3 id="infoTitle">Atkinson Dither</h3>
+          <div class="info-meta">
+            <span class="year-badge" id="infoYear">1984</span>
+            <span class="author-name" id="infoAuthor">Bill Atkinson (Apple)</span>
+          </div>
+        </div>
+    
+        <div class="info-body">
+          <p id="infoDesc">
+            Algoritma klasik dari era Macintosh awal. Berbeda dengan Floyd-Steinberg, Atkinson hanya menyebarkan 75% dari error ke tetangga, "membuang" sisanya.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  <div id="stillModal" class="still-modal hidden">
+    <div class="still-box">
+      <canvas id="stillCanvas"></canvas>
+
+      <div class="still-actions">
+        <button class="btn" id="exportStill">Export Noices</button>
+        <button class="btn" id="closeStill">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+
+<footer>
+    <span><span class="blink"></span> Randy Ardiansyah — 2026</span>
+    <span>rd1955 © {{ 2026 }}</span>
+    <span>Made with Python / Flask</span>
+</footer>
+
+  <script>
+    // Custom cursor
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+
+    document.addEventListener('mousemove', e => {
+        mx = e.clientX; 
+        my = e.clientY;
+        cursor.style.transform = `translate(${mx - 6}px, ${my - 6}px)`;
+    });
+
+    function animateRing() {
+        rx += (mx - rx) * 0.12;
+        ry += (my - ry) * 0.12;
+        ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
+        requestAnimationFrame(animateRing);
+    }
+    animateRing();
+
+    // Smooth scroll untuk navigasi
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    });
+</script>
+<script src="/static/dither.js"></script>
+
+</body>
+</html>

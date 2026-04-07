@@ -1,0 +1,27 @@
+# Virtual environment
+venv/
+env/
+.env/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Environment variables (rahasia!)
+.env
+.env.local
+
+# VSCode settings
+.vscode/
+
+# macOS junk
+.DS_Store
+
+# Database
+*.db
+*.sqlite3
+
+# Log files
+*.log

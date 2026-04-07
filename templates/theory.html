@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Theory — Designer & Creative Coder</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        .theory-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+            border-top: 1px solid var(--black);
+            min-height: calc(100vh - 53px);
+        }
+
+        .theory-col {
+            padding: 60px 48px;
+            border-right: 1px solid var(--black);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .theory-col:last-child {
+            border-right: none;
+        }
+
+        .theory-title {
+            font-family: var(--display);
+            font-size: clamp(40px, 8vw, 80px);
+            line-height: 0.9;
+            margin-bottom: 40px;
+            color: var(--black);
+        }
+
+        .theory-content {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .theory-item {
+            border-bottom: 1px solid var(--black);
+            padding-bottom: 30px;
+        }
+
+        .theory-item:last-child {
+            border-bottom: none;
+        }
+
+        .theory-label {
+            font-size: 9px;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .theory-item-title {
+            font-family: var(--display);
+            font-size: clamp(18px, 3vw, 28px);
+            line-height: 1.1;
+            margin-bottom: 12px;
+            color: var(--black);
+        }
+
+        .theory-desc {
+            font-size: 12px;
+            line-height: 1.8;
+            color: #333;
+            max-width: 500px;
+        }
+
+        .back-link {
+            position: fixed;
+            top: 16px;
+            left: 24px;
+            z-index: 99;
+            font-size: 11px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--black);
+            border-bottom: 1px solid transparent;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            border-bottom-color: var(--accent);
+            color: var(--accent);
+        }
+
+        @media (max-width: 768px) {
+            .theory-section {
+                grid-template-columns: 1fr;
+            }
+
+            .theory-col {
+                border-right: none;
+                border-bottom: 1px solid var(--black);
+                padding: 40px 24px;
+            }
+
+            .theory-title {
+                font-size: clamp(28px, 6vw, 48px);
+                margin-bottom: 30px;
+            }
+
+            .back-link {
+                top: 70px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <a href="/" class="back-link">← Back</a>
+
+    <nav>
+        <a href="/" class="nav-logo">Me ▌ <span> To Me</span></a>
+        <ul class="nav-links">
+            <li><a href="/#projects">Projects</a></li>
+            <li><a href="/theory">Theory</a></li>
+            <li><a href="/case-studies">CaseStudies</a></li>
+            <li><a href="/dither">dither</a></li>
+        </ul>
+    </nav>
+
+    <section class="theory-section">
+        <div class="theory-col">
+            <h1 class="theory-title">Research<br>& Development</h1>
+        </div>
+
+        <div class="theory-col">
+            <div class="theory-content">
+                <div class="theory-item">
+                    <span class="theory-label">001 — Thesis</span>
+                    <h2 class="theory-item-title">Text To image using stabel diffusion</h2>
+                    <p class="theory-desc">Eksplorasi tentang bagaimana estetika yang terkode dan yang digital menciptakan makna baru dalam komunikasi visual. Penelitian ini menggabungkan seni rupa, teori desain, dan teknologi AI.</p>
+                </div>
+
+                <div class="theory-item">
+                    <span class="theory-label">002 — Focus</span>
+                    <h2 class="theory-item-title">AI & Design Tools</h2>
+                    <p class="theory-desc">Riset mendalam tentang peran artificial intelligence dalam proses desain modern. Bagaimana AI mengubah cara kita berpikir tentang kreativitas, otomasi, dan estetika visual.</p>
+                </div>
+
+                <div class="theory-item">
+                    <span class="theory-label">003 — Interest</span>
+                    <h2 class="theory-item-title">Intersection of Art, Tech & Culture</h2>
+                    <p class="theory-desc">Mengeksplorasi pertemuan antara seni tradisional, teknologi kontemporer, dan fenomena budaya yang terus berkembang. Bagaimana ketiganya saling mempengaruhi dan menciptakan bentuk komunikasi baru.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Custom cursor
+        const cursor = document.getElementById('cursor');
+        const ring = document.getElementById('cursorRing');
+        let mx = 0, my = 0, rx = 0, ry = 0;
+
+        document.addEventListener('mousemove', e => {
+            mx = e.clientX;
+            my = e.clientY;
+            cursor.style.transform = `translate(${mx - 6}px, ${my - 6}px)`;
+        });
+
+        function animateRing() {
+            rx += (mx - rx) * 0.12;
+            ry += (my - ry) * 0.12;
+            ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
+            requestAnimationFrame(animateRing);
+        }
+        animateRing();
+    </script>
+</body>
+</html>
