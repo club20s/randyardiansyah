@@ -123,8 +123,7 @@ clients = [
 
 @app.route("/")
 def index():
-    """Home page dengan portfolio grid"""
-    return render_template("index.html", clients=clients)
+    return "OK RAILWAY HIDUP"
 
 @app.route("/theory")
 def theory():
