@@ -77,21 +77,25 @@
 
         .back-link {
             position: fixed;
-            top: 16px;
-            left: 24px;
-            z-index: 99;
+            top: 80px; /* lebih turun biar ga ketabrak navbar */
+            left: 20px;
+            z-index: 9999; /* paling atas */
             font-size: 11px;
             letter-spacing: 0.1em;
             text-transform: uppercase;
             text-decoration: none;
             color: var(--black);
-            border-bottom: 1px solid transparent;
-            transition: all 0.2s;
+            background: rgba(255,255,255,0.8); /* biar kebaca */
+            backdrop-filter: blur(6px);
+            padding: 6px 10px;
+            border-radius: 4px;
+            border: 1px solid rgba(0,0,0,0.1);
         }
 
+
         .back-link:hover {
-            border-bottom-color: var(--accent);
-            color: var(--accent);
+            background: var(--black);
+            color: var(--white);
         }
 
         @media (max-width: 768px) {
@@ -114,6 +118,12 @@
                 top: 70px;
             }
         }
+        @media (max-width: 768px) {
+    .theory-section {
+        margin-top: 60px;
+    }
+}
+
     </style>
 </head>
 <body>
