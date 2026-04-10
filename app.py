@@ -36,65 +36,11 @@ case_studies = [
         "link": "https://scrapbox.io/WarenBergg1995/"
     },
     {
-        "title": "Blockchain Data Visualization",
-        "category": "Motion & 3D",
-        "role": "Motion Designer & 3D Artist",
-        "year": "2023",
-        "image": "/static/images/04-blockchain.jpg",
-        "description": "Visualisasi kompleks tentang teknologi blockchain dan cryptocurrency melalui motion graphics dan 3D rendering. Project menerjemahkan konsep teknis menjadi visual yang engaging dan mudah dipahami oleh audience yang non-technical.",
-        "link": "#"
-    },
-    {
-        "title": "Pattern & Texture Exploration",
-        "category": "Design Research",
-        "role": "Designer & Researcher",
-        "year": "2024",
-        "image": "/static/images/05-pola.jpg",
-        "description": "Eksplorasi mendalam tentang penggunaan pattern dan texture dalam design kontemporer. Research ini menggabungkan natural forms dengan digital geometry untuk menciptakan visual yang organik namun terstruktur.",
-        "link": "#"
-    },
-    {
-        "title": "Digital Portraiture with AI",
-        "category": "3D & CGI",
-        "role": "3D Artist & AI Practitioner",
-        "year": "2023",
-        "image": "/static/images/06-wajah.jpg",
-        "description": "Eksplorasi tentang representasi wajah manusia di era AI. Project menggunakan kombinasi 3D modeling, rendering, dan generative models untuk menciptakan portraits yang ambigu antara realistic dan abstract.",
-        "link": "#"
-    },
-    {
-        "title": "Archive Publishing",
-        "category": "Publication Design",
-        "role": "Art Director & Designer",
-        "year": "2022",
-        "image": "/static/images/07-cetak.jpg",
-        "description": "Perancangan dan produksi buku dan zine independen yang menjadi archive visual dari berbagai project. Setiap publikasi dirancang dengan fokus pada typography, paper selection, dan printing technique yang menciptakan experience holistik.",
-        "link": "#"
-    },
-    {
-        "title": "Modular UI/UX System",
-        "category": "UI/UX Design",
-        "role": "UI/UX Designer & Design Systems Manager",
-        "year": "2024",
-        "image": "/static/images/08-grid.jpg",
-        "description": "Pengembangan design system modular yang memungkinkan rapid prototyping dan consistent user experience. System mencakup component library, spacing guidelines, dan interaction patterns yang dapat di-reuse across multiple projects.",
-        "link": "#"
-    },
-    {
-        "title": "Cultural Documentation",
-        "category": "Photography & Storytelling",
-        "role": "Documentary Photographer",
-        "year": "2023",
-        "image": "/static/images/09-potret.jpg",
-        "description": "Dokumentasi visual tentang identity dan tradisi budaya melalui portraiture yang intimate. Project ini menggunakan analog photography untuk menangkap nuansa dan kedalaman dari setiap subjek dan narrative mereka.",
-        "link": "#"
-    },
-    {
         "title": "Data Landscape Visualization",
         "category": "Data Visualization",
         "role": "Data Viz Designer & Researcher",
         "year": "2024",
-        "image": "/static/images/10-lanskap.jpg",
+        "image": "/static/images/04randy.png",
         "description": "Visualisasi interaktif yang mengeksplorasi relationship antara natural landscapes dan data. Project menggunakan teknologi web dan creative coding untuk membuat pengalaman yang immersive dan educational tentang environmental data.",
         "link": "#"
     }
