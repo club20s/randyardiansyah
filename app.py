@@ -15,7 +15,7 @@ case_studies = [
         "year": "2024",
         "image": "/static/images/02randy.jpeg",
         "description": "Pengembangan sistem text-to-image menggunakan Stable Diffusion API. Project ini mengeksplorasi bagaimana AI dapat memahami prompts bahasa natural dan menghasilkan visual yang konsisten. Implemented di Google Colab dengan Python untuk accessibility dan reproducibility.",
-        "link": "https://colab.research.google.com/drive/1TpDNeSrHazXwYj8acuhk3JMOpUKoDRtb"
+        "link": "https://colab.research.google.com/drive/1TpDNeSrHazXwYj8acuhk3JMOpUKoDRtb?usp=sharing"
     },
     {
         "title": "Fashion Editorial",

@@ -24,10 +24,19 @@
     </nav>
 
     <section class="hero">
-        <h1 class="hero-title">
-            <span class="line outlined">Randy Ardiansyah</span>
-        </h1>
-    </section>
+    <div class="hero-video-container">
+        <video autoplay muted loop class="hero-video" 
+               poster="{{ url_for('static', filename='images/05randy.jpeg') }}">
+            <source src="{{ url_for('static', filename='videos/art006.mp4') }}" type="video/mp4">
+        </video>
+    </div>
+    
+    <div class="hero-content">
+        <h1 class="hero-title">Randy<br>Ardiansyah</h1>
+        <p class="hero-subtitle">Creative Coder | Processing Visualizations</p>
+        <p class="hero-description">Bringing code to life through visual art</p>
+    </div>
+</section>
     
 
     <section class="bottom-section page-reveal" id="about">
@@ -35,7 +44,7 @@
             <span class="section-label">001 — Me as you know</span>
             <p class="about-greeting">Hello!</p>
             <div class="about-text">
-                <p>Randy Ardiansyah here!! and Iam a Programmer dan vibe coding, 
+                <p> Iam a Programmer dan vibe coding, 
                 creative coder, Saya fokus pada pengembangan aplikasi Python dan desain visual, 
                 dengan keahlian di Figma, Canva, dan Processing untuk menciptakan pengalaman yang intuitif dan estetis.</p>
                 <br>
