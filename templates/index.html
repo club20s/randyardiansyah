@@ -25,6 +25,20 @@
     </nav>
 
     <section class="hero">
+        <!-- Audio Background -->
+    <audio id="heroAudio" class="hero-audio">
+        <source src="{{ url_for('static', filename='audio/stockk.wav') }}" type="audio/wav">
+    </audio>
+    
+    <!-- Music Toggle Button -->
+    <button class="audio-toggle" id="audioToggle" title="Toggle Music">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+        </svg>
+    </button>
+    
     <div class="hero-video-container">
         <video autoplay muted loop class="hero-video" 
                poster="{{ url_for('static', filename='images/05randy.jpeg') }}">
@@ -110,6 +124,60 @@
                 }
             });
         });
+        
+        
+    document.addEventListener('DOMContentLoaded', function() {
+    const audioToggle = document.getElementById('audioToggle');
+    const heroAudio = document.getElementById('heroAudio');
+    
+    // Set volume
+    heroAudio.volume = 0.15; // WAV biasanya lebih keras
+    
+    // Event: Audio siap diputar
+    heroAudio.addEventListener('canplay', function() {
+        console.log('Audio loaded');
+    });
+    
+    // Event: Audio selesai
+    heroAudio.addEventListener('ended', function() {
+        heroAudio.currentTime = 0; // Reset untuk loop
+        heroAudio.play();
+    });
+    
+    // Toggle button
+    audioToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        
+        if (heroAudio.paused) {
+            heroAudio.play().catch(err => {
+                console.log('Autoplay blocked:', err);
+            });
+            audioToggle.classList.remove('muted');
+            audioToggle.setAttribute('title', 'Mute Music');
+        } else {
+            heroAudio.pause();
+            audioToggle.classList.add('muted');
+            audioToggle.setAttribute('title', 'Play Music');
+        }
+    });
+    
+    // Auto-play on first interaction
+    document.addEventListener('click', function() {
+        if (heroAudio.paused && heroAudio.src) {
+            heroAudio.play().catch(err => {
+                console.log('Autoplay blocked by browser');
+            });
+            audioToggle.classList.remove('muted');
+        }
+    }, { once: true });
+    
+    // Keyboard shortcut: Space to toggle
+    document.addEventListener('keydown', function(e) {
+        if (e.code === 'Space' && e.target === document.body) {
+            audioToggle.click();
+        }
+    });
+});
     </script>
 </body>
 </html>
